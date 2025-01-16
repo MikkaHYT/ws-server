@@ -21,7 +21,8 @@ async def broadcast(data):
         message = json.dumps(data)
         await asyncio.wait([client.send(message) for client in connected_clients])
 
-start_server = websockets.serve(handler, "localhost", 8000)
+async def main():
+    async with websockets.serve(handler, "localhost", 8765):
+        await asyncio.Future()  # run forever
 
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+asyncio.run(main())
