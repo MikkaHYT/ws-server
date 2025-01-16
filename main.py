@@ -22,7 +22,7 @@ async def broadcast(data):
         await asyncio.wait([client.send(message) for client in connected_clients])
 
 async def main():
-    async with websockets.serve(handler, "localhost", 8765):
+    async with websockets.serve(handler, "0.0.0.0", 8000):
         await asyncio.Future()  # run forever
 
 asyncio.run(main())
